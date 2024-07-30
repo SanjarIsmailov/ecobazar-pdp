@@ -39,7 +39,6 @@ public class AuthController {
         Authentication authenticate = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequestDto.getEmail(), loginRequestDto.getPassword())
         );
-        UserEntity byEmail = userRepo.findByEmail(loginRequestDto.getEmail());
         String accessToken = jwtUtil.generateToken((UserDetails) authenticate.getPrincipal());
         String refreshToken = jwtUtil.generateRefreshToken((UserDetails) authenticate.getPrincipal());
         return new TokenDto("Bearer "+accessToken, "Bearer "+refreshToken);
@@ -48,8 +47,6 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody RegisterDto registerDto) throws MessagingException {
-        Role role = roleRepo.findById(1).orElseThrow();
-        registerDto.setRoles(List.of(role));
         String token = jwtUtil.generateRegisterToken(registerDto);
         String emailContent = String.format(
                 """
