@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterDto {
-
     private String email;
     private String firstName;
     private String lastName;

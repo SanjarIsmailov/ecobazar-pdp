@@ -13,6 +13,4 @@ import java.util.List;
 public class TokenDecodeDTO {
     private String username;
     private List<SimpleGrantedAuthority> roles;
-
-
 }

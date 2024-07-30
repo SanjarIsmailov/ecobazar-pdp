@@ -114,6 +114,4 @@ public class JwtUtil {
 
         return new RegisterDto(email, firstName, lastName, password, repeatPassword, roles);
     }
-
-
 }

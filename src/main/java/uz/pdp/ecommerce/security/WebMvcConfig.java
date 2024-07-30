@@ -21,8 +21,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedHeaders("*");
     }
 
-
-
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
