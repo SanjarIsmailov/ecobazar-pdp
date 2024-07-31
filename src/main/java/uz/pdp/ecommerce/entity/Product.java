@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -21,7 +22,8 @@ public class Product {
     private String name;
     private String description;
     private Double price;
-    private byte[] image;
+    @OneToMany
+    private List<Attachment> images;
     @ManyToOne
     private Brand brand;
     @ManyToOne

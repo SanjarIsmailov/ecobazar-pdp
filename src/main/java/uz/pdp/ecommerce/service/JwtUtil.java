@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import uz.pdp.ecommerce.dto.RegisterDto;
 import uz.pdp.ecommerce.dto.TokenDecodeDTO;
 import uz.pdp.ecommerce.entity.Role;
+import uz.pdp.ecommerce.entity.enums.RoleName;
 import uz.pdp.ecommerce.repo.RoleRepo;
 
 import javax.crypto.SecretKey;
@@ -50,7 +51,7 @@ public class JwtUtil {
                 .subject(subject)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
-                .claim("roles", registerDto.getRoles().stream().map(Role::getName).collect(Collectors.joining(",")))
+                .claim("roles", registerDto.getRoles().stream().map(item->item.getName().toString()).collect(Collectors.joining(",")))
                 .signWith(getKey())
                 .compact();
     }
@@ -108,10 +109,20 @@ public class JwtUtil {
         String lastName = subjectParts[4];
 
         String rolesStr = claims.get("roles", String.class);
-        List<Role> roles = Arrays.stream(rolesStr.split(","))
-                .map(roleRepo::findByName)
-                .collect(Collectors.toList());
+        List<Role> roles = getRolesFromClaims(rolesStr);
 
         return new RegisterDto(email, firstName, lastName, password, repeatPassword, roles);
+    }
+
+    private List<Role> getRolesFromClaims(String rolesStr) {
+
+        List<RoleName> roleNames = Arrays.stream(rolesStr.split(","))
+                .map(String::trim)
+                .map(RoleName::valueOf)
+                .toList();
+
+        return roleNames.stream()
+                .map(roleRepo::findByName)
+                .collect(Collectors.toList());
     }
 }
