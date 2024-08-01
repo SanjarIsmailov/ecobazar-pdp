@@ -16,7 +16,7 @@ import java.util.UUID;
 @Builder
 @Entity
 @Table
-public class Comment {
+public class ProductFeedback {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

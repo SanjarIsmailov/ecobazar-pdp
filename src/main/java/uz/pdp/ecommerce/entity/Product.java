@@ -22,6 +22,7 @@ public class Product {
     private String name;
     private String description;
     private Double price;
+    private Integer stockAmount;
     @OneToMany
     private List<Attachment> images;
     @ManyToOne
@@ -31,7 +32,6 @@ public class Product {
     private Double rating;
     @ManyToOne
     private Discount discount;
-
     @ManyToOne
     private Review review;
 }

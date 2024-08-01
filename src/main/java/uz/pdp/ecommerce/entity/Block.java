@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.repository.cdi.Eager;
 import uz.pdp.ecommerce.entity.templ.AbsEntity;
 
 import java.util.List;
