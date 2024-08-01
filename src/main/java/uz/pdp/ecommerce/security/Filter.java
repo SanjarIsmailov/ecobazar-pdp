@@ -29,7 +29,7 @@ public class Filter extends OncePerRequestFilter {
         logger.info("Authorization header: {}", authorization);
         String requestURI = request.getRequestURI();
 
-        if ("http://localhost:8080/api/verify".equals(requestURI)) {
+        if ("http://localhost:8080/api/verify".equals(requestURI) || "http://localhost:8080/api/refresh-token".equals(requestURI)) {
             filterChain.doFilter(request, response);
             return;
         }

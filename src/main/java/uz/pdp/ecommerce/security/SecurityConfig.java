@@ -30,7 +30,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(manager -> {
             manager
-                    .requestMatchers("/css/**", "/api/auth/**").permitAll()
+                    .requestMatchers("/css/**", "/api/auth/**","/api/refresh-token").permitAll()
                     .anyRequest().authenticated();
         });
 
