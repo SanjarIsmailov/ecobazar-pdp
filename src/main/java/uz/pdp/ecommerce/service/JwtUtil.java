@@ -18,6 +18,7 @@ import uz.pdp.ecommerce.repo.RoleRepo;
 
 import javax.crypto.SecretKey;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,9 +52,18 @@ public class JwtUtil {
                 .subject(subject)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
-                .claim("roles", registerDto.getRoles().stream().map(item->item.getName().toString()).collect(Collectors.joining(",")))
+                .claim("roles", registerDto.getRoles().stream().map(item -> item.getName().toString()).collect(Collectors.joining(",")))
                 .signWith(getKey())
                 .compact();
+    }
+
+    public String getUsernameFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .verifyWith(getKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+        return claims.getSubject();
     }
 
 
@@ -88,10 +98,12 @@ public class JwtUtil {
                 .parseSignedClaims(token)
                 .getPayload();
         String rolesStr = claims.get("roles", String.class);
-        var roles = Arrays.stream(rolesStr.split(",")).map(SimpleGrantedAuthority::new).toList();
-        return new TokenDecodeDTO(claims.getSubject(), roles);
+        if (rolesStr != null && !rolesStr.isEmpty()) {
+            var roles = Arrays.stream(rolesStr.split(",")).map(SimpleGrantedAuthority::new).toList();
+            return new TokenDecodeDTO(claims.getSubject(), roles);
+        }
+        return new TokenDecodeDTO(claims.getSubject(), Collections.emptyList());
     }
-
 
 
     public RegisterDto getRegisterData(String token) {

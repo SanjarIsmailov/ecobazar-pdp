@@ -35,7 +35,6 @@ public class UserEntity extends AbsEntity implements UserDetails {
     private Address address;
 
     @ManyToMany
-    @ToString.Exclude
     List<Role> roles;
 
     @Override
