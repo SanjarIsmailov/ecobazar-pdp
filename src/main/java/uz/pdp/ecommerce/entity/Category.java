@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.proxy.HibernateProxy;
 import uz.pdp.ecommerce.entity.templ.AbsEntity;
 
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -19,7 +20,8 @@ public class Category extends AbsEntity {
     private String name;
     @OneToOne
     private Attachment image;
-    private String tag;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Tag> tags;
 
     @Override
     public final boolean equals(Object o) {

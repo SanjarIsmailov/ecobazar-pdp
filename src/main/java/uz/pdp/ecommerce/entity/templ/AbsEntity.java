@@ -31,14 +31,12 @@ public abstract class AbsEntity {
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(updatable = false)
     private LocalDateTime updatedAt;
 
     @ManyToOne
     @JoinColumn(updatable = false)
     private UserEntity createdBy;
     @ManyToOne
-    @JoinColumn(updatable = false)
     private UserEntity updatedBy;
 
     @Override

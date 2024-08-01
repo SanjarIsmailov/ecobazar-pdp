@@ -24,5 +24,5 @@ public class BlockComment {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    private Block block;
+    private Blog blog;
 }

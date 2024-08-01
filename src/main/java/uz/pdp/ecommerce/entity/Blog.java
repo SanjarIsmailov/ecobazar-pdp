@@ -1,17 +1,13 @@
 package uz.pdp.ecommerce.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.proxy.HibernateProxy;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import uz.pdp.ecommerce.entity.templ.AbsEntity;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,33 +16,15 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
+@NoArgsConstructor
 @Entity
-@Table(name = "users")
-public class UserEntity extends AbsEntity implements UserDetails {
+public class Blog extends AbsEntity {
+    private String description;
+    private String title;
     @ManyToOne
-    private Attachment image;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private String phone;
-    @ManyToOne
-    private Address address;
-
-    @ManyToMany
-    @ToString.Exclude
-    List<Role> roles;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
+    private Review review;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Attachment> attachments;
 
     @Override
     public final boolean equals(Object o) {
@@ -55,8 +33,8 @@ public class UserEntity extends AbsEntity implements UserDetails {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        UserEntity that = (UserEntity) o;
-        return getId() != null && Objects.equals(getId(), that.getId());
+        Blog blog = (Blog) o;
+        return getId() != null && Objects.equals(getId(), blog.getId());
     }
 
     @Override
