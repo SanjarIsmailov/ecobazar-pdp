@@ -20,6 +20,6 @@ public class Basket {
     private Integer id;
     @ManyToMany
     List<Product> products;
-    @ManyToOne
+    @OneToOne
     private UserEntity user;
 }
