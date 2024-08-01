@@ -23,6 +23,7 @@ public class Product {
     private String description;
     private Double price;
     private Integer stockAmount;
+    private Double shippingPrice;
     @OneToMany
     private List<Attachment> images;
     @ManyToOne
