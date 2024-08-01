@@ -34,4 +34,6 @@ public class Product {
     private Discount discount;
     @ManyToOne
     private Review review;
+    @OneToOne
+    private Attachment video;
 }
