@@ -22,7 +22,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@Table
+@Table(name = "users")
 public class UserEntity extends AbsEntity implements UserDetails {
     @ManyToOne
     private Attachment image;
