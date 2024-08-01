@@ -29,4 +29,9 @@ public class Product {
     @ManyToOne
     private Category category;
     private Double rating;
+    @ManyToOne
+    private Discount discount;
+
+    @ManyToOne
+    private Review review;
 }
