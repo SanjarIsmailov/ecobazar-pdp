@@ -1,4 +1,4 @@
-package uz.pdp.ecommerce.service;
+package uz.pdp.ecommerce.security.service;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

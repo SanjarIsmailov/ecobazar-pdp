@@ -1,4 +1,4 @@
-package uz.pdp.ecommerce.controller;
+package uz.pdp.ecommerce.controller.security;
 
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +17,8 @@ import uz.pdp.ecommerce.entity.Role;
 import uz.pdp.ecommerce.entity.UserEntity;
 import uz.pdp.ecommerce.repo.RoleRepo;
 import uz.pdp.ecommerce.repo.UserEntityRepository;
-import uz.pdp.ecommerce.service.JwtUtil;
-import uz.pdp.ecommerce.service.MailSenderService;
+import uz.pdp.ecommerce.security.service.JwtUtil;
+import uz.pdp.ecommerce.security.service.MailSenderService;
 
 import java.util.List;
 

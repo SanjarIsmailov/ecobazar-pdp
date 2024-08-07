@@ -12,7 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import uz.pdp.ecommerce.dto.TokenDecodeDTO;
-import uz.pdp.ecommerce.service.JwtUtil;
+import uz.pdp.ecommerce.security.service.JwtUtil;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package uz.pdp.ecommerce.controller;
+package uz.pdp.ecommerce.controller.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import uz.pdp.ecommerce.repo.UserEntityRepository;
-import uz.pdp.ecommerce.service.JwtUtil;
+import uz.pdp.ecommerce.security.service.JwtUtil;
 
 @RestController
 @RequestMapping("/api/refresh-token")
