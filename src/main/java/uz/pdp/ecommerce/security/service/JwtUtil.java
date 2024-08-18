@@ -73,8 +73,6 @@ public class JwtUtil {
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))
                 .signWith(getKey()).compact();
-
-
     }
 
     public boolean isValid(String token) {

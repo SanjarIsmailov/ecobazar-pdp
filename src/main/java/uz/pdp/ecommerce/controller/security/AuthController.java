@@ -41,7 +41,7 @@ public class AuthController {
         );
         String accessToken = jwtUtil.generateToken((UserDetails) authenticate.getPrincipal());
         String refreshToken = jwtUtil.generateRefreshToken((UserDetails) authenticate.getPrincipal());
-        return new TokenDto("Bearer "+accessToken, "Bearer "+refreshToken);
+        return new TokenDto("Bearer " + accessToken, "Bearer " + refreshToken);
     }
 
 
@@ -50,25 +50,25 @@ public class AuthController {
         String token = jwtUtil.generateRegisterToken(registerDto);
         String emailContent = String.format(
                 """
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Verify Email</title>
-                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-                </head>
-                <body>
-                    <div class="container mt-5">
-                        <h2>Verify Email</h2>
-                        <p>Hi, please verify your email to register with our service!</p>
-                        <form action="http://localhost:8080/api/auth/verify" method="post">
-                            <input name="token" type="hidden" value="%s">
-                            <button type="submit" class="btn btn-success">Verify</button>
-                        </form>
-                    </div>
-                </body>
-                </html>
-                """, token);
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>Verify Email</title>
+                            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                        </head>
+                        <body>
+                            <div class="container mt-5">
+                                <h2>Verify Email</h2>
+                                <p>Hi, please verify your email to register with our service!</p>
+                                <form action="http://localhost:8080/api/auth/verify" method="post">
+                                    <input name="token" type="hidden" value="%s">
+                                    <button class="btn btn-dark" type="submit" class="btn btn-success">Verify</button>
+                                </form>
+                            </div>
+                        </body>
+                        </html>
+                        """, token);
 
         mailSenderService.sendHtmlEmail(registerDto.getEmail(), "verification", emailContent);
 
@@ -83,7 +83,7 @@ public class AuthController {
             RegisterDto registerData = jwtUtil.getRegisterData(token);
             if (registerData.getPassword().equals(registerData.getRepeatPassword())) {
                 System.out.println(registerData);
-                Role role = roleRepo.findById(1).orElseThrow();
+                Role role = roleRepo.findById(registerData.getRoles().getFirst().getId()).orElseThrow();
                 UserEntity user = new UserEntity();
                 user.setEmail(registerData.getEmail());
                 user.setFirstName(registerData.getFirstName());

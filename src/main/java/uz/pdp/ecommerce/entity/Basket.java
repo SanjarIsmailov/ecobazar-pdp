@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -17,9 +18,12 @@ import java.util.List;
 public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private UUID id;
     @ManyToMany
     List<Product> products;
     @OneToOne
     private UserEntity user;
+    public Basket(UserEntity userEntity) {
+
+    }
 }
