@@ -83,7 +83,7 @@ public class AuthController {
             RegisterDto registerData = jwtUtil.getRegisterData(token);
             if (registerData.getPassword().equals(registerData.getRepeatPassword())) {
                 System.out.println(registerData);
-                Role role = roleRepo.findById(registerData.getRoles().getFirst().getId()).orElseThrow();
+                Role role = roleRepo.findById(registerData.getRoles().get(0).getId()).orElseThrow();
                 UserEntity user = new UserEntity();
                 user.setEmail(registerData.getEmail());
                 user.setFirstName(registerData.getFirstName());
