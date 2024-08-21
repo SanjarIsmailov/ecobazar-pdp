@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/block")
+@RequestMapping("/api/blog")
 @RequiredArgsConstructor
-public class BlockController {
+public class BlogController {
 
     private final BlogService blogService;
     private final BlogCommentService blogCommentService;
