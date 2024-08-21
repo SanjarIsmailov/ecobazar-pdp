@@ -2,6 +2,7 @@ package uz.pdp.ecommerce.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.proxy.HibernateProxy;
 import uz.pdp.ecommerce.entity.templ.AbsEntity;
 
@@ -13,8 +14,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 @Table
 public class Product extends AbsEntity {
