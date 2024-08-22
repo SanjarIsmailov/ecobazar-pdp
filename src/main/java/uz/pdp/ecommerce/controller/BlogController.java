@@ -34,7 +34,7 @@ public class BlogController {
         return ResponseEntity.ok(blogService.createBlog(blog));
     }
 
-    @PutMapping("/comment/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Blog> updateBlog(@PathVariable UUID id, @RequestBody Blog blog) {
         return ResponseEntity.ok(blogService.updateBlog(id, blog));
     }
@@ -45,7 +45,7 @@ public class BlogController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/comment/{blogId}")
+    @GetMapping("/commentByBlog/{blogId}")
     public ResponseEntity<List<BlogComment>> getCommentsByBlog(@PathVariable UUID blogId) {
         return ResponseEntity.ok(blogCommentService.getCommentsByBlog(blogId));
     }

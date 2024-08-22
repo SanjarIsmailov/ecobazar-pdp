@@ -17,7 +17,7 @@ import java.util.UUID;
 @Table
 public class Basket {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @ManyToMany
     List<Product> products;
